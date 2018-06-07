@@ -13,55 +13,66 @@ namespace LegendofGnome
 {
     class Player
     {
-        int x_pos = 0;
-        int y_pos = 0;
-        public void Move(Rectangle player_rectangle)
+        
+        Point point = new Point(0, 0);
+        public Rectangle player_rectangle = new Rectangle();
+
+        public void Move(Rectangle player_rectangle, Canvas canvas)
         {
-            if(Keyboard.IsKeyDown(Key.W))
+            if (Keyboard.IsKeyDown(Key.W))
             {
-                if (y_pos < 850)
+                if (point.Y >= 0)
                 {
-                    MessageBox.Show("w");
-                    y_pos -= 2;
+                    Console.WriteLine("w");
+                    point.Y = point.Y - 1;
+
+                   
+                    
 
                 }
-
             }
-            if(Keyboard.IsKeyDown(Key.S))
+            if (Keyboard.IsKeyDown(Key.S))
             {
-                if (y_pos > 0)
+                if (point.Y <= 910)
                 {
-                    y_pos += 2; 
+                    Console.WriteLine("s");
+                    point.Y += 1;
+                    
                 }
             }
-            if(Keyboard.IsKeyDown(Key.A))
+            if (Keyboard.IsKeyDown(Key.A))
             {
-                if (x_pos > 0)
+                if (point.X >= 0)
                 {
-                    x_pos -= 2;
+                    Console.WriteLine("a");
+                    point.X -= 1;
                 }
             }
-            if(Keyboard.IsKeyDown(Key.D))
+            if (Keyboard.IsKeyDown(Key.D))
             {
-                if(x_pos <850)
+                if (point.X <= 1230)
                 {
-                    x_pos += 2;
+                    Console.WriteLine("d");
+                    point.X += 1;
                 }
             }
-            Canvas.SetLeft(player_rectangle, x_pos);
-            Canvas.SetTop(player_rectangle, y_pos);
-
+            Update(player_rectangle, canvas);
         }
+
+        public void Update(Rectangle player_rectangle, Canvas canvas)
+        {
+            Canvas.SetLeft(player_rectangle, point.X);
+            Canvas.SetTop(player_rectangle, point.Y);
+        }
+
         public void GeneratePlayer(Canvas canvas)
         {
-            Rectangle player_rectangle = new Rectangle();
             player_rectangle.Height = 50;
             player_rectangle.Width = 50;
             canvas.Children.Add(player_rectangle);
-            Canvas.SetLeft(player_rectangle, x_pos);
-            Canvas.SetTop(player_rectangle, y_pos);
+            Canvas.SetLeft(player_rectangle, point.X);
+            Canvas.SetTop(player_rectangle, point.Y);
             player_rectangle.Fill = Brushes.Red;
-            
         }
     }
 
