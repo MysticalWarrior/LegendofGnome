@@ -43,6 +43,24 @@ namespace LegendofGnome
         {
             player.Move(player_rectangle);
         }
+        
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            double player_X = 250;
+            double player_Y = 144;
+
+            Click_X = Mouse.GetPosition(this).X;
+            Click_Y = Mouse.GetPosition(this).Y;
+            MessageBox.Show(Click_X.ToString() + " " + Click_Y.ToString());
+
+            double slope_Y = (player_Y - Click_Y);
+            double slope_X = (player_X - Click_X);
+            MessageBox.Show((slope_Y/slope_X).ToString());
+
+            //takes 2 seconds for a projectile to get somwhere
+            double radius = 50;
+            clicked = true;
+        }
 
         public void Window_KeyDown(object sender, KeyEventArgs e)
         {
