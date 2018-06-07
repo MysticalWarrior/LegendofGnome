@@ -21,10 +21,8 @@ namespace LegendofGnome
     /// </summary>
     public partial class MainWindow : Window
     {
+        bool isPlayerGenerated = false;
         Player player = new Player();
-        Rectangle player_rectangle = new Rectangle();
-        public int y_pos = 0;
-        public int x_pos = 0;
         DispatcherTimer GameTimer = new DispatcherTimer();
 
         public MainWindow()
@@ -32,21 +30,34 @@ namespace LegendofGnome
 
 
             InitializeComponent();
-           
-            player.GeneratePlayer(canvas);
+
+            player.GeneratePlayer(Canvas);
+
             GameTimer.Tick += GameTimer_Tick;
-            GameTimer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 60);//fps
+            GameTimer.Interval = new TimeSpan(0, 0, 0, 0, 1000 / 9000);//fps
             GameTimer.Start();
         }
 
         private void GameTimer_Tick(object sender, EventArgs e)
         {
-            player.Move(player_rectangle);
+
+            player.Move(player.player_rectangle, Canvas);
         }
+    
 
         public void Window_KeyDown(object sender, KeyEventArgs e)
         {
            
+                
+            
+            //player.Update(player_rectangle);
+            //player.Move(player_rectangle);
+            //player.Update(player_rectangle);
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show(e.GetPosition(Canvas).ToString());
         }
     }
 }
