@@ -7,9 +7,10 @@
         mc:Ignorable="d"
         KeyDown="Window_KeyDown"
         MouseDown="Window_MouseDown"
-        Title="MainWindow" Height="830" Width="1025" >
-    
-    <Canvas x:Name="Canvas">
+        Title="MainWindow" Height="1030" Width="1025" >
+    <StackPanel>
+        <Canvas x:Name="Canvas" Height="1000" Width="1000">
         
-    </Canvas>
+        </Canvas>
+    </StackPanel>
 </Window>

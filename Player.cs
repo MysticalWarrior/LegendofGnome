@@ -23,16 +23,14 @@ namespace LegendofGnome
             {
                 if (playerPoint.Y >= 55)
                 {
-                    
-                    Console.WriteLine("w");
+                    //Console.WriteLine("w");
                     playerPoint.Y = playerPoint.Y - 10;
-
                 }
                 if (isRoom1 == true)
                 {
                     if (playerPoint.Y <= 55 & playerPoint.X >= 450 & playerPoint.X <= 550)
                     {
-                       // MessageBox.Show("wrong!");
+                        //MessageBox.Show("wrong!");
                         playerPoint.Y -= 10;
                         if (playerPoint.Y == -50)
                         {
@@ -45,9 +43,8 @@ namespace LegendofGnome
             {
                 if (playerPoint.Y <= 860)
                 {
-                    Console.WriteLine("s");
+                    //Console.WriteLine("s");
                     playerPoint.Y += 10;
-
                 }
                 else if (isRoom1 == true)
                 {
@@ -67,7 +64,7 @@ namespace LegendofGnome
             {
                 if (playerPoint.X >= 60)
                 {
-                    Console.WriteLine("a");
+                    //Console.WriteLine("a");
                     playerPoint.X -= 10;
                 }
             }
@@ -75,7 +72,7 @@ namespace LegendofGnome
             {
                 if (playerPoint.X <= 880)
                 {
-                    Console.WriteLine("d");
+                    //Console.WriteLine("d");
                     playerPoint.X += 10;
                 }
             }

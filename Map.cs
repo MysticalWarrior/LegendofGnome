@@ -24,41 +24,42 @@ namespace LegendofGnome
         public Rectangle Room1wallLeft = new Rectangle();
         public Rectangle Room1wallRight = new Rectangle();
         public Point wallPoint = new Point(0,0);
-        
+
         public void MapGenerate(Rectangle door1, Canvas canvas, bool isRoom1)
         {
-                Room1wallTop1.Height = 50;
-                Room1wallTop1.Width = 450;
-                canvas.Children.Add(Room1wallTop1);
+            Room1wallTop1.Height = 50;
+            Room1wallTop1.Width = 450;
+            canvas.Children.Add(Room1wallTop1);
 
-                Room1wallRight.Height = 1000;
-                Room1wallRight.Width = 50;
-                canvas.Children.Add(Room1wallRight);
+            Room1wallRight.Height = 1000;
+            Room1wallRight.Width = 50;
+            canvas.Children.Add(Room1wallRight);
 
-                Room1wallLeft.Height = 1000;
-                Room1wallLeft.Width = 50;
-                canvas.Children.Add(Room1wallLeft);
+            Room1wallLeft.Height = 1000;
+            Room1wallLeft.Width = 50;
+            canvas.Children.Add(Room1wallLeft);
 
-                Room1wallTop2.Height = 50;
-                Room1wallTop2.Width = 450;
-                canvas.Children.Add(Room1wallTop2);
+            Room1wallTop2.Height = 50;
+            Room1wallTop2.Width = 450;
+            canvas.Children.Add(Room1wallTop2);
 
-                Room1wallBot1.Height = 50;
-                Room1wallBot1.Width = 450;
-                canvas.Children.Add(Room1wallBot1);
+            Room1wallBot1.Height = 50;
+            Room1wallBot1.Width = 450;
+            canvas.Children.Add(Room1wallBot1);
 
-                Room1wallBot2.Height = 50;
-                Room1wallBot2.Width = 450;
-                canvas.Children.Add(Room1wallBot2);
+            Room1wallBot2.Height = 50;
+            Room1wallBot2.Width = 450;
+            canvas.Children.Add(Room1wallBot2);
 
-                door1.Height = 25;
-                door1.Width = 100;
-                canvas.Children.Add(door1);
+            door1.Height = 25;
+            door1.Width = 100;
+            canvas.Children.Add(door1);
 
-                door2.Height = 25;
-                door2.Width = 100;
-                canvas.Children.Add(door2);
+            door2.Height = 25;
+            door2.Width = 100;
+            canvas.Children.Add(door2);
         }
+
         public void room1Generate()
         {
             door1.Fill = Brushes.Red;
@@ -86,6 +87,7 @@ namespace LegendofGnome
             Room1wallRight.Fill = Brushes.Black;
             Canvas.SetLeft(Room1wallLeft, wallPoint.X + 935);
         }
+
         public void roomGenerate(bool isRoom1, bool isRoom2, bool isRoom3)
         {
             if (isRoom1 == true)

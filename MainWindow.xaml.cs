@@ -24,7 +24,6 @@ namespace LegendofGnome
         public bool isRoom1 = false;
         public bool isRoom2 = false;
         public bool isRoom3 = false;
-        public bool isEnemy = false;
         public Point playerPoint = new Point(500, 500);
         public Point enemyPoint = new Point(1000, 1000);
         Map map = new Map();
@@ -41,7 +40,6 @@ namespace LegendofGnome
             {
                 map.MapGenerate(map.door1,Canvas, isRoom1);
                 enemies.Add(new Enemy(Canvas, enemyPoint));
-                isEnemy = true;
                 player.GeneratePlayer(Canvas, playerPoint);
                 isGenerated = true;
             }
@@ -80,10 +78,7 @@ namespace LegendofGnome
                 {
                     if (enemies[0].hit())
                     {
-                        enemies.Remove(enemies[0]);
-                        projectiles.Remove(projectiles[i]);
                         Canvas.Children.Remove(projectiles[i].projectile);
-                        isEnemy = false;
                     }
                 }
                 if (projectiles[i].move() == false)
