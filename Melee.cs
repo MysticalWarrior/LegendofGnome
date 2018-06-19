@@ -19,30 +19,38 @@ namespace LegendofGnome
     class Melee
     {
         private Canvas canvas;
-        public Rectangle[] sword = new Rectangle[5];
-        public Point sword_tip = new Point(250, 144);
-        public Point playerPoint;
+        public Rectangle sword = new Rectangle();
+        public bool hit;
 
-        public Melee(Canvas c, Window window, Point pP)
+        public Melee(Canvas c, Window window, Point Point)
         {
-            canvas = c;
-            playerPoint = pP;
-            for (int i = 0; i < 5; i++)
+            sword.Height = 20;
+            sword.Width = 20;
+            //BitmapImage bitmapBackground = new BitmapImage(new Uri("Fireball Projectile.png", UriKind.Relative));
+            //ImageBrush backgroundBrush = new ImageBrush(bitmapBackground);
+            sword.Fill = Brushes.Gray; //backgroundBrush;
+            canvas.Children.Add(sword);
+            double direction_x = Mouse.GetPosition(window).X;
+            double direction_y = Mouse.GetPosition(window).Y;
+            if (direction_x <= 0)
             {
-                sword[i].Height = 20;
-                sword[i].Width = 20;
-                //BitmapImage bitmapBackground = new BitmapImage(new Uri("Fireball Projectile.png", UriKind.Relative));
-                //ImageBrush backgroundBrush = new ImageBrush(bitmapBackground);
-                sword[i].Fill = Brushes.Gray; //backgroundBrush;
-                canvas.Children.Add(sword[i]);
-                double direction_x = Mouse.GetPosition(window).X;
-                double direction_y = Mouse.GetPosition(window).Y;
-                if (direction_x <= 0)
-                {
-                    Canvas.SetLeft(this.sword[i], playerPoint.X + 25);
-                }
-                Canvas.SetTop(this.sword[i], playerPoint.Y + 25);
+                Canvas.SetLeft(this.sword, Point.X + 25);
             }
+            Canvas.SetTop(this.sword, Point.Y + 25);
+        }
+
+        public bool checkCollision(Point t, Point s, Rectangle target, Rectangle source)
+        {
+            bool temp = false;
+
+            if (t.X <= s.X + source.Width & t.Y <= s.Y + source.Height)
+            {
+                if (t.X + target.Width >= s.X & t.Y + target.Height >= s.Y)
+                {
+                    temp = true;
+                }
+            }
+            return temp;
         }
     }
 }

@@ -7,60 +7,99 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace LegendofGnome
 {
     class Player
     {
-        int x_pos = 0;
-        int y_pos = 0;
-        public void Move(Rectangle player_rectangle)
+        public Rectangle playerRectangle = new Rectangle();
+        Map map = new Map();
+
+        public Point Move(Rectangle playerRectangle, Canvas canvas, Point playerPoint, bool isRoom1, bool isRoom2, bool isRoom3)
         {
-            if(Keyboard.IsKeyDown(Key.W))
+            if (Keyboard.IsKeyDown(Key.W))
             {
-                if (y_pos < 850)
+                if (playerPoint.Y >= 55)
                 {
-                    MessageBox.Show("w");
-                    y_pos -= 2;
+                    
+                    Console.WriteLine("w");
+                    playerPoint.Y = playerPoint.Y - 10;
 
                 }
+                if (isRoom1 == true)
+                {
+                    if (playerPoint.Y <= 55 & playerPoint.X >= 450 & playerPoint.X <= 550)
+                    {
+                       // MessageBox.Show("wrong!");
+                        playerPoint.Y -= 10;
+                        if (playerPoint.Y == -50)
+                        {
+                            playerPoint.Y = 1000;
+                        }
+                    }
+                }
+            }
+            if (Keyboard.IsKeyDown(Key.S))
+            {
+                if (playerPoint.Y <= 860)
+                {
+                    Console.WriteLine("s");
+                    playerPoint.Y += 10;
 
-            }
-            if(Keyboard.IsKeyDown(Key.S))
-            {
-                if (y_pos > 0)
+                }
+                else if (isRoom1 == true)
                 {
-                    y_pos += 2; 
+                    if (playerPoint.Y >= 850 & playerPoint.X >= 450 & playerPoint.X <= 550)
+                    {
+                        playerPoint.Y += 10;
+                        {
+                            if (playerPoint.Y == 1050)
+                            {
+                                playerPoint.Y = 0;
+                            }
+                        }
+                    }
                 }
             }
-            if(Keyboard.IsKeyDown(Key.A))
+            if (Keyboard.IsKeyDown(Key.A))
             {
-                if (x_pos > 0)
+                if (playerPoint.X >= 60)
                 {
-                    x_pos -= 2;
+                    Console.WriteLine("a");
+                    playerPoint.X -= 10;
                 }
             }
-            if(Keyboard.IsKeyDown(Key.D))
+            if (Keyboard.IsKeyDown(Key.D))
             {
-                if(x_pos <850)
+                if (playerPoint.X <= 880)
                 {
-                    x_pos += 2;
+                    Console.WriteLine("d");
+                    playerPoint.X += 10;
                 }
             }
-            Canvas.SetLeft(player_rectangle, x_pos);
-            Canvas.SetTop(player_rectangle, y_pos);
-
+            Update(playerRectangle, canvas, playerPoint);
+            return playerPoint;
         }
-        public void GeneratePlayer(Canvas canvas)
+
+        public void Update(Rectangle playerRectangle, Canvas canvas, Point playerPoint)
         {
-            Rectangle player_rectangle = new Rectangle();
-            player_rectangle.Height = 50;
-            player_rectangle.Width = 50;
-            canvas.Children.Add(player_rectangle);
-            Canvas.SetLeft(player_rectangle, x_pos);
-            Canvas.SetTop(player_rectangle, y_pos);
-            player_rectangle.Fill = Brushes.Red;
+            Canvas.SetLeft(playerRectangle, playerPoint.X);
+            Canvas.SetTop(playerRectangle, playerPoint.Y);
+           
+        }
+
+        public void GeneratePlayer(Canvas canvas, Point playerPoint)
+        {
+            playerRectangle.Height = 50;
+            playerRectangle.Width = 50;
+            BitmapImage bitmapBackground = new BitmapImage(new Uri("Wizard Sprite.png", UriKind.Relative));
+            ImageBrush backgroundBrush = new ImageBrush(bitmapBackground);
+            playerRectangle.Fill = backgroundBrush;
+            canvas.Children.Add(playerRectangle);
+            Canvas.SetLeft(playerRectangle, playerPoint.X);
+            Canvas.SetTop(playerRectangle, playerPoint.Y);
             
         }
     }
